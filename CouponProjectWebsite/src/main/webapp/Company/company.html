@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1255">
+<title>Company</title>
+<script src="angular.js"></script>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>-->
+<script src="../Admin/bootstrap.js"></script>
+<script src="../Admin/globalV.js"></script>
+<script src="../Admin/angular-ui-router.js"></script>
+<script src="../Admin/Server.js"></script>
+<script src="main.ctrl.js"></script>
+
+<!-- adminCtrl -->
+<script src="../Admin/createConnection/ctrlConnectionPool.js"></script>
+<script src="../Admin/getAllCompenies/ctrl.js"></script>
+<script src="../Admin/update/ctrl.js"></script>
+<script src="../Admin/route1.js"></script>
+<link rel="stylesheet" type="text/css" href="../Admin/styleCenter.css">
+</head>
+<body ng-app="myApp">
+    <div ng-controller="MainCtrl as m" >
+        <table border="1" width="95%" align="center">
+            <tr>
+                <td colspan="4" align="center">
+                    <h1>
+                        welcome Company
+                    </h1>
+                </td>
+            </tr>
+            <tr>
+                <td width="20%" valign="top">
+                    <table border="1" width="100%" >
+                        <div id="AdminMenue">
+                            <tr>
+                                <td>
+                                    <h2>
+                                        menue
+                                    </h2>    
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <a href="#/update?url=/{{m.UserService.projectName}}/webapi/CompanyService/create/Coupon&method=POST&ContentType=application/json&Accept=text/html" ng-click="m.pool.objects = {'id':'','title':'shahaf','startDate':'1501758864181','endDate':'1511758864181','amount':'50','type':'FOOD','message':'helloFreeWorld','price':'50.5','image':'asdasd.jpg'}; m.pool.names =['title','startDate','endDate','amount','type','message','price','image'];m.page =='signin'">createCoupon</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/CompanyService/get/AllCouponUntilDate&method=POST&ContentType=text/html&Accept=application/json&text=date" ng-click="m.page = 'update'; m.type='coupon';">AllCouponUntilDate</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/CompanyService/get/AllCouponByCouponType&method=POST&ContentType=text/html&Accept=application/json&CouponType=CouponType" ng-click="m.page = 'update'; m.type='coupon';">AllCouponByCouponType</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/CompanyService/get/AllCoupon&method=POST&ContentType=text/html&Accept=application/json" ng-click="m.page = 'update'; m.type='coupon';">AllCoupon</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/CompanyService/get/Coupon&method=POST&ContentType=text/html&Accept=application/json&text=id" ng-click="m.page = 'update'; m.type='coupon';">Coupon</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/CompanyService/get/ThisCompany&method=POST&ContentType=text/html&Accept=application/json" ng-click="m.page = 'update'; m.type='company'">ThisCompany</a>
+                                </td>
+                            </<tr>
+                        </div>
+                        <div id="ClientService">
+                            <tr>
+                                <td>
+                                    <h2>
+                                        ClientService
+                                    </h2>    
+                                </td>
+                            </tr>
+                            <!--
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponByPriceOfCustId&method=POST&ContentType=text/html&Accept=application/json&text=id&text=price" ng-click="m.page = 'update'; m.type='customer';">ThisCustomer</a>
+                                </td>
+                            </<tr>
+                                -->
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCoupons&method=POST&ContentType=text/html&Accept=application/json" ng-click="m.page = 'update'; m.type='coupon';">getAllCoupons</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponByPrice&method=POST&ContentType=text/html&Accept=application/json&text=price" ng-click="m.page = 'update'; m.type='coupon';">getAllCouponsByPrice</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponByPriceOfCompId&method=POST&ContentType=text/html&Accept=application/json&text=id&text=price" ng-click="m.page = 'update'; m.type='coupon';">AllCouponByPriceOfCompId</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponsByType&method=POST&ContentType=text/html&Accept=application/json&CouponType=CouponType" ng-click="m.page = 'update'; m.type='coupon';">AllCouponsByType</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponsOfCompany&method=POST&ContentType=text/html&Accept=application/json&text=id" ng-click="m.page = 'update'; m.type='coupon';">AllCouponsOfCompany</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/CouponByTitle&method=POST&ContentType=text/html&Accept=application/json&text=title" ng-click="m.page = 'update'; m.type='coupon';">CouponByTitle</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/CouponById&method=POST&ContentType=text/html&Accept=application/json&text=id" ng-click="m.page = 'update'; m.type='coupon';">CouponById</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="/{{m.UserService.projectName}}/LogOut" >LogeOut</a>
+                                </td>
+                            </<tr>
+
+
+
+                        </div>
+                    </table>
+                </td>
+                <td >
+                    {{m.status}}
+                    <div ui-view></div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1255">
+	<title>Insert title here</title>
+	<script src="angular.js"></script>
+	<script src="bootstarap.js"></script>
+	<script src="Server.js"></script>
+	<script src="main.ctrl.js"></script>
+	<link rel="stylesheet" type="text/css" href="../Admin/styleCenter.css">
+	
+</head>
+<body ng-app="myApp">
+	<div ng-controller="MainCtrl as m" >
+		<form  ng-submit="m.Server.sendLogin(m.User)">
+			<table border="1">
+			<tr>
+				<td>
+					User Name:
+				</td>
+				<td>	
+					<input name="userName" type="text" ng-model="m.User.userName"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Password:
+				</td>
+				<td>	
+					<input name="password" type="text" ng-model="m.User.password"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					ClientType:
+				</td>
+				<td>	
+					<input name="clientType" type="text" ng-model="m.User.clientType"></input>
+				</td>
+			</tr>
+			</table>
+			<p>
+			{{m.User | json}}
+			{{m.k()}}
+			
+			</p>
+		
+		<input type="submit" value="Submit"></input>
+		</form>
+	</div>
+</body>
+</html>

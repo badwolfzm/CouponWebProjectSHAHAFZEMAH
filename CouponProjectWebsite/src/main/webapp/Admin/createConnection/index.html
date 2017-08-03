@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+
+<form  ng-submit='CONTR.Server.sendLogin(CONTR.Connection,CONTR.url,m,"POST",{"Content-Type":"application/json"},CONTR)'>
+    <table border="1">
+    <tr>
+        <td>
+            url:
+        </td>
+        <td>	
+            <input name="url" type="text" ng-model="CONTR.Connection.url"></input>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            ammount:
+        </td>
+        <td>	
+            <input name="ammount" type="text" ng-model="CONTR.Connection.ammount"></input>
+        </td>
+    </tr>
+    
+    </table>
+    <p>
+    {{CONTR.Connection | json}}
+    
+    </p>
+
+<input type="submit" value="Submit"></input>
+</form>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+
+<form  ng-submit='CONTR.Server.sendLogin(m.pool.objects,CONTR.location.search().url,m,CONTR.location.search().method,{"Content-Type":CONTR.location.search().ContentType,"Accept":CONTR.location.search().Accept},CONTR,false)'>
+    <table border=1 style="margin-left:2%">
+        {{m.pool.objects}}
+        <tr ng-repeat="k in m.pool.names">
+            <td>{{k.toUpperCase()}}</td>
+            <td> 
+                <span ng-show='(k == "startDate" || k == "endDate")'>
+                    <input ng-attr-name="{{k}}" type="text" ng-model="m.pool.objects[k]"></input>
+                </span>
+                <span ng-show='(k == "type" )'>
+                    <select ng-attr-name="{{k}}" ng-model="m.pool.objects[k]">
+                        <option value="RESTURANTS">RESTURANTS</option>
+                        <option value="ELECTRICITY">ELECTRICITY</option>
+                        <option value="FOOD">FOOD</option>
+                        <option value="HEALTH">HEALTH</option>
+                        <option value="SPORTS">SPORTS</option>
+                        <option value="CAMPING">CAMPING</option>
+                        <option value="TRAVELLING">TRAVELLING</option>
+
+                    </select>
+                </span>
+                <span ng-show='!(k == "startDate" || k == "endDate" || k == "type")'>
+                    
+                <input ng-attr-name="{{k}}" type="text" ng-model="m.pool.objects[k]"></input>
+                </span>
+            </td>
+        </tr>
+        <tr align="center">
+            <td colspan="{{m.pool.names.length}}">
+                <input type="submit" value="update"></input>
+            </td>
+        </tr>
+        <tr ng-show="m.page =='update'" >
+            <td colspan="{{m.pool.names.length}}">
+                <button ng-click="CONTR.Server.sendLogin(m.pool.objects,CONTR.location.search().url2,m,CONTR.location.search().method,{'Content-Type':CONTR.location.search().ContentType,'Accept':CONTR.location.search().Accept},CONTR,false)">{{(m.user == 'Customer' && (m.type == 'coupon')) ? "purchase":"delete"}}</button>
+            </td>
+        </tr>
+    </table>
+
+
+</form>
+
+</html>

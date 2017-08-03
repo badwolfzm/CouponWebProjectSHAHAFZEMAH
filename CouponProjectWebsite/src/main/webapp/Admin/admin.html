@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1255">
+<title>admin</title>
+<link rel="stylesheet" type="text/css" href="styleCenter.css">
+<script src="angular.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>-->
+<script src="bootstrap.js"></script>
+<script src="globalV.js"></script>
+<script src="angular-ui-router.js"></script>
+<script src="Server.js"></script>
+<script src="main.ctrl.js"></script>
+<!-- adminCtrl -->
+<script src="createConnection/ctrlConnectionPool.js"></script>
+<script src="getAllCompenies/ctrl.js"></script>
+<script src="update/ctrl.js"></script>
+<script src="route1.js"></script>
+
+</head>
+<body ng-app="myApp">
+    <div ng-controller="MainCtrl as m" >
+        <table border="1" width="95%" align="center">
+            <tr>
+                <td colspan="4" align="center">
+                    <h1>
+                        welcome Admin
+                    </h1>
+                </td>
+            </tr>
+            <tr>
+                <td width="20%" valign="top">
+                    <table border="1" width="100%" >
+                        <div id="AdminMenue">
+                            <tr>
+                                <td>
+                                    <h2>
+                                        menue
+                                    </h2>    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#/CreateConnections?url=/{{m.UserService.projectName}}/webapi/AdminService/create/connections">CreateConnections</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/AdminService/get/AllCompanies&method=POST&ContentType=text/html&Accept=application/json" ng-click="m.page = 'update'; m.type='company'">getAllCompanies</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/AdminService/get/AllCustomer&method=POST&ContentType=application/json&Accept=application/json" ng-click="m.page = 'update'; m.type='customer'">getAllCustomers</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/update?url=/{{m.UserService.projectName}}/webapi/AdminService/create/company&method=POST&ContentType=application/json&Accept=text/html" ng-click="m.pool.objects = {'compName':'','email':'','id':'','password':'','webCoupon':[]}; m.pool.names =['compName','email','password'];m.page =='signin'">createCompany</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#/update?url=/{{m.UserService.projectName}}/webapi/AdminService/create/customer&method=POST&ContentType=application/json&Accept=text/html" ng-click="m.pool.objects = {'coupons':[],'custName':'','id':'','password':''}; m.pool.names =['custName','password'];m.page =='signin'">createCustomer</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/AdminService/get/customer&method=POST&ContentType=text/html&Accept=application/json&text=id" ng-click="m.page = 'update'; m.type='customer';">getCustomer</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/AdminService/get/ThisCustomer&method=POST&ContentType=text/html&Accept=application/json&text=name" ng-click="m.page = 'update'; m.type='customer';">ThisCustomer</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/AdminService/get/Company&method=POST&ContentType=text/html&Accept=application/json&text=id" ng-click="m.page = 'update'; m.type='company';">getCompany</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/AdminService/get/ThisCompany&method=POST&ContentType=text/html&Accept=application/json&text=name" ng-click="m.page = 'update'; m.type='company';">ThisCompany</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/doTask?url=/{{m.UserService.projectName}}/webapi/AdminService/delete/AllCouponsOutOfDate&method=DELETE&ContentType=text/html&Accept=text/html" ng-click="">deleteCouponsOutOfDate</a>
+                                </td>
+                            </<tr>
+                                <tr>
+                                <td>
+                                    <a href="#/doTask?url=/{{m.UserService.projectName}}/webapi/AdminService/create/DailyThread&method=POST&ContentType=text/html&Accept=text/html" ng-click="">createADailyThread</a>
+                                </td>
+                            </<tr>
+                        </div>
+                        <div id="ClientService">
+                            <tr>
+                                <td>
+                                    <h2>
+                                        ClientService
+                                    </h2>    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#/CreateConnections">CreateConnections</a>
+                                </td>
+                            </<tr>
+                            <!--
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponByPriceOfCustId&method=POST&ContentType=text/html&Accept=application/json&text=id&text=price" ng-click="m.page = 'update'; m.type='customer';">ThisCustomer</a>
+                                </td>
+                            </<tr>
+                                -->
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCoupons&method=POST&ContentType=text/html&Accept=application/json" ng-click="m.page = 'update'; m.type='coupon';">getAllCoupons</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponByPrice&method=POST&ContentType=text/html&Accept=application/json&text=price" ng-click="m.page = 'update'; m.type='coupon';">getAllCouponsByPrice</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponByPriceOfCompId&method=POST&ContentType=text/html&Accept=application/json&text=id&text=price" ng-click="m.page = 'update'; m.type='coupon';">AllCouponByPriceOfCompId</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponsByType&method=POST&ContentType=text/html&Accept=application/json&CouponType=CouponType" ng-click="m.page = 'update'; m.type='coupon';">AllCouponsByType</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/AllCouponsOfCompany&method=POST&ContentType=text/html&Accept=application/json&text=id" ng-click="m.page = 'update'; m.type='coupon';">AllCouponsOfCompany</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/CouponByTitle&method=POST&ContentType=text/html&Accept=application/json&text=title" ng-click="m.page = 'update'; m.type='coupon';">CouponByTitle</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="#/get?url=/{{m.UserService.projectName}}/webapi/Client/get/CouponById&method=POST&ContentType=text/html&Accept=application/json&text=id" ng-click="m.page = 'update'; m.type='coupon';">CouponById</a>
+                                </td>
+                            </<tr>
+                            <tr>
+                                <td>
+                                    <a href="/{{m.UserService.projectName}}/LogOut" >LogeOut</a>
+                                </td>
+                            </<tr>
+                        </div>
+                    </table>
+                </td>
+                <td >
+                    {{m.status}}
+                    <div ui-view></div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+</html>

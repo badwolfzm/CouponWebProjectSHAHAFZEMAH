@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+
+<form  ng-submit='CONTR.Server.sendLogin("",CONTR.location.search().url,m,CONTR.location.search().method,{"Content-Type":CONTR.location.search().ContentType,"Accept":CONTR.location.search().Accept},CONTR,true,CONTR.pool)'>
+    {{CONTR.location.search().CouponType}}
+    <table border=1 style="margin-left:2%" ng-show="CONTR.location.search().text.length>0 || CONTR.location.search().CouponType.length>0">
+
+            <tr ng-repeat="k in ((CONTR.location.search().text.charAt ==undefined ) ? CONTR.location.search().text :[CONTR.location.search().text])" >
+                <td>
+                    {{k.toUpperCase()}}
+                </td>
+                <td >
+                    <input ng-attr-name="{{k}}" type="text" ng-model="CONTR.pool.search[k]">
+                </td>
+            </tr>
+            <tr ng-repeat="c in ((CONTR.location.search().CouponType.charAt ==undefined ) ? CONTR.location.search().CouponType :[CONTR.location.search().CouponType])" >
+                <td>
+                    {{c.toUpperCase()}}
+                </td>
+                <td >
+                    <select ng-attr-name="{{c}}" ng-model="CONTR.pool.search[c]">
+                        <option value="RESTURANTS">RESTURANTS</option>
+                        <option value="ELECTRICITY">ELECTRICITY</option>
+                        <option value="FOOD">FOOD</option>
+                        <option value="HEALTH">HEALTH</option>
+                        <option value="SPORTS">SPORTS</option>
+                        <option value="CAMPING">CAMPING</option>
+                        <option value="TRAVELLING">TRAVELLING</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="refrash"></input>
+                </td>
+            </tr>
+
+        
+            
+
+    </table>
+    
+    <table border=1 style="margin-left:2%">
+        <tr >
+            <td ng-repeat="k in CONTR.pool.names">{{k.toUpperCase()}}</td>
+            <td ng-show="m.user == 'Admin' || (m.user == 'Company' && (m.type == 'coupon')) ">
+                edit
+            </td>
+            <td ng-show="m.user == 'Customer' ">
+                purchase
+            </td>
+        </tr>
+    
+        <tr ng-repeat="c in CONTR.pool.objects">
+            <td ng-repeat="i in CONTR.pool.names">{{(i == "startDate" || i == "endDate") ? "" : c[i]}}<span ng-if='i == "startDate" || i == "endDate" '>{{c[i] | date:'yyyy-MM-dd '}}</span></td>
+            <td ng-show="m.user == 'Admin'">
+                <a href="#/update?url={{((m.type == 'company') ? ('/'+m.UserService.projectName+'/webapi/AdminService/update/Company'):((m.type == 'customer') ? '/'+m.UserService.projectName+'/webapi/AdminService/update/Customer' : '/'+m.UserService.projectName+'/webapi/CompanyService/update/Coupon') ) }}&method=PUT&ContentType=application/json&Accept=text/html&url2={{((m.type == 'company') ? ('/'+m.UserService.projectName+'/webapi/AdminService/delete/Company'):((m.type == 'customer') ? '/'+m.UserService.projectName+'/webapi/AdminService/delete/customer' : '/'+m.UserService.projectName+'/webapi/CompanyService/delete/Coupon') ) }}" ng-click="m.pool.objects = c; m.pool.names =CONTR.pool.names">edit</a>
+            </td>
+            <td ng-show="m.user == 'Company' && (m.type == 'coupon')">
+                <a href="#/update?url={{'/'+m.UserService.projectName+'/webapi/CompanyService/update/Coupon'}}&method=PUT&ContentType=application/json&Accept=text/html&url2={{((m.type == 'company') ? ('/'+m.UserService.projectName+'/webapi/AdminService/delete/Company'):((m.type == 'customer') ? '/'+m.UserService.projectName+'/webapi/AdminService/delete/customer' : '/'+m.UserService.projectName+'/webapi/CompanyService/delete/Coupon') ) }}" ng-click="m.pool.objects = c; m.pool.names =CONTR.pool.names">edit</a>
+            </td>
+            <td ng-show="m.user == 'Customer' && (m.type == 'coupon')">
+                <a href="#/update?url={{'/'+m.UserService.projectName+'/webapi/Customer/purchaseCoupon'}}&method=POST&ContentType=application/json&Accept=text/html&url2={{'/'+m.UserService.projectName+'/webapi/Customer/purchaseCoupon'}}" ng-click="m.pool.objects = c; m.pool.names =CONTR.pool.names">purchase</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="refrash"></input>
+            </td>
+        </tr>
+    </table>
+
+
+</form>
+
+</html>
